@@ -1,3 +1,115 @@
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/AlarmManagerService.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/AlarmManagerService.smali
+1767c1767
+<     invoke-direct {p0, v2}, Lcom/android/server/AlarmManagerService;->publishNextAlarmCustomTile(I)V
+---
+>     # invoke-direct {p0, v2}, Lcom/android/server/AlarmManagerService;->publishNextAlarmCustomTile(I)V
+2797c2797
+<     invoke-direct {p0, v7}, Lcom/android/server/AlarmManagerService;->publishNextAlarmCustomTile(I)V
+---
+>     # invoke-direct {p0, v7}, Lcom/android/server/AlarmManagerService;->publishNextAlarmCustomTile(I)V
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/am/ActivityManagerService.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/am/ActivityManagerService.smali
+97069c97069
+<     move-object/from16 v1, v29
+---
+>     move-object/from16 v1, v31
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/am/ActivityStack.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/am/ActivityStack.smali
+1315c1315
+<     invoke-direct {p0, p1}, Lcom/android/server/am/ActivityStack;->updatePrivacyGuardNotificationLocked(Lcom/android/server/am/ActivityRecord;)V
+---
+>     # invoke-direct {p0, p1}, Lcom/android/server/am/ActivityStack;->updatePrivacyGuardNotificationLocked(Lcom/android/server/am/ActivityRecord;)V
+5216,5230c5216
+<     iget-object v4, p0, Lcom/android/server/am/ActivityStack;->mService:Lcom/android/server/am/ActivityManagerService;
+< 
+<     iget-object v4, v4, Lcom/android/server/am/ActivityManagerService;->mAppOpsService:Lcom/android/server/AppOpsService;
+< 
+<     .line 2125
+<     iget-object v5, p1, Lcom/android/server/am/ActivityRecord;->app:Lcom/android/server/am/ProcessRecord;
+< 
+<     iget v5, v5, Lcom/android/server/am/ProcessRecord;->uid:I
+< 
+<     iget-object v6, p1, Lcom/android/server/am/ActivityRecord;->packageName:Ljava/lang/String;
+< 
+<     .line 2124
+<     invoke-virtual {v4, v5, v6}, Lcom/android/server/AppOpsService;->getPrivacyGuardSettingForPackage(ILjava/lang/String;)Z
+< 
+<     move-result v1
+---
+>     const/4 v1, 0x0
+5232d5217
+<     .line 2127
+8182a8168,8181
+>     iget-object v9, p1, Lcom/android/server/am/ActivityRecord;->packageName:Ljava/lang/String;
+> 
+>     invoke-static {v9, v0, v4, v2}, Landroid/app/MiuiThemeHelper;->canKeepActivityAlive(Ljava/lang/String;ILandroid/content/res/Configuration;Landroid/content/res/Configuration;)Z
+>  
+>     move-result v9
+>  
+>     if-eqz v9, :cond_miui_f
+>  
+>     const/4 v9, 0x1
+>  
+>     return v9
+>  
+>     :cond_miui_f
+> 
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/InputMethodManagerService.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/InputMethodManagerService.smali
+2366c2366
+<     invoke-direct {p0, v0}, Lcom/android/server/InputMethodManagerService;->publishImeSelectorCustomTile(Landroid/view/inputmethod/InputMethodInfo;)V
+---
+>     #invoke-direct {p0, v0}, Lcom/android/server/InputMethodManagerService;->publishImeSelectorCustomTile(Landroid/view/inputmethod/InputMethodInfo;)V
+2406c2406
+<     invoke-direct {p0}, Lcom/android/server/InputMethodManagerService;->unpublishImeSelectorCustomTile()V
+---
+>     #invoke-direct {p0}, Lcom/android/server/InputMethodManagerService;->unpublishImeSelectorCustomTile()V
+5045c5045
+<     invoke-direct {p0, v2}, Lcom/android/server/InputMethodManagerService;->publishImeSelectorCustomTile(Landroid/view/inputmethod/InputMethodInfo;)V
+---
+>     #invoke-direct {p0, v2}, Lcom/android/server/InputMethodManagerService;->publishImeSelectorCustomTile(Landroid/view/inputmethod/InputMethodInfo;)V
+5151c5151
+<     invoke-direct {p0}, Lcom/android/server/InputMethodManagerService;->unpublishImeSelectorCustomTile()V
+---
+>     #invoke-direct {p0}, Lcom/android/server/InputMethodManagerService;->unpublishImeSelectorCustomTile()V
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/pm/PackageManagerService$PackageHandler.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/pm/PackageManagerService$PackageHandler.smali
+2068c2068
+<     invoke-virtual {v2, v3, v5, v7}, Landroid/app/AppOpsManager;->setPrivacyGuardSettingForPackage(ILjava/lang/String;Z)V
+---
+>     # invoke-virtual {v2, v3, v5, v7}, Landroid/app/AppOpsManager;->setPrivacyGuardSettingForPackage(ILjava/lang/String;Z)V
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/power/ShutdownThread.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/power/ShutdownThread.smali
+526,527c526
+<     .line 453
+<     invoke-virtual {v2}, Landroid/app/ProgressDialog;->show()V
+---
+>     sget-boolean v4, Lcom/android/server/power/ShutdownThread;->mReboot:Z 
+528a528,529
+>     invoke-static {p0, v4}, Lcom/android/server/power/ShutdownThreadInjector;->showShutdownDialog(Landroid/content/Context;Z)V
+>   
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/usb/UsbDeviceManager$UsbHandler.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/usb/UsbDeviceManager$UsbHandler.smali
+693c693
+<     invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->publishAdbCustomTile()V
+---
+>     # invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->publishAdbCustomTile()V
+764c764
+<     invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->unpublishAdbCustomTile()V
+---
+>     # invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->unpublishAdbCustomTile()V
+1683c1683
+<     invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->publishAdbCustomTile()V
+---
+>     # invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->publishAdbCustomTile()V
+1774c1774
+<     invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->unpublishAdbCustomTile()V
+---
+>     # invoke-direct {p0}, Lcom/android/server/usb/UsbDeviceManager$UsbHandler;->unpublishAdbCustomTile()V
+diff -r /home/danil_e71/Miui/test/services.jar.out/smali/com/android/server/wm/WindowManagerService.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/services.jar.out/smali/com/android/server/wm/WindowManagerService.smali
+850c850
+<     new-instance v3, Lcom/android/server/policy/PhoneWindowManager;
+---
+>     new-instance v3, Lcom/android/server/policy/MiuiPhoneWindowManager;
+852c852
+<     invoke-direct {v3}, Lcom/android/server/policy/PhoneWindowManager;-><init>()V
+---
+>     invoke-direct {v3}, Lcom/android/server/policy/MiuiPhoneWindowManager;-><init>()V
+
 diff -r /home/danil_e71/Miui/test/framework.jar.out/smali/android/app/AppOpsManager.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/framework.jar.out/smali/android/app/AppOpsManager.smali
 3417c3417
 < .method public static opToDefaultMode(IZ)I
@@ -56,3 +168,5 @@ diff -r /home/danil_e71/Miui/test/framework.jar.out/smali/android/content/res/Re
 5638,5639d5629
 < 
 <     check-cast v14, Landroid/graphics/drawable/Drawable$ConstantState;
+
+
