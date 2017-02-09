@@ -1,0 +1,58 @@
+diff -r /home/danil_e71/Miui/test/framework.jar.out/smali/android/app/AppOpsManager.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/framework.jar.out/smali/android/app/AppOpsManager.smali
+3417c3417
+< .method public static opToDefaultMode(IZ)I
+---
+> .method public static opToDefaultMode(I)I
+3420d3419
+<     .param p1, "isStrict"    # Z
+3423,3434d3421
+<     .line 1293
+<     if-eqz p1, :cond_0
+< 
+<     .line 1294
+<     sget-object v0, Landroid/app/AppOpsManager;->sOpDefaultStrictMode:[I
+< 
+<     aget v0, v0, p0
+< 
+<     return v0
+< 
+<     .line 1295
+<     :cond_0
+diff -r /home/danil_e71/Miui/test/framework.jar.out/smali/android/app/ResourcesManager.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/framework.jar.out/smali/android/app/ResourcesManager.smali
+1800a1801,1802
+>     invoke-static {v1, p1}, Landroid/app/MiuiThemeHelper;->handleExtraConfigurationChanges(ILandroid/content/res/Configuration;)V
+>     
+2802c2804
+<     new-instance v22, Landroid/content/res/Resources;
+---
+>     new-instance v22, Landroid/content/res/MiuiResources;
+2808c2810
+<     invoke-direct {v0, v7, v14, v13, v1}, Landroid/content/res/Resources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;)V
+---
+>     invoke-direct {v0, v7, v14, v13, v1}, Landroid/content/res/MiuiResources;-><init>(Landroid/content/res/AssetManager;Landroid/util/DisplayMetrics;Landroid/content/res/Configuration;Landroid/content/res/CompatibilityInfo;)V
+diff -r /home/danil_e71/Miui/test/framework.jar.out/smali/android/content/pm/PackageParser.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/framework.jar.out/smali/android/content/pm/PackageParser.smali
+11703c11703
+<     new-instance v35, Landroid/content/res/Resources;
+---
+>     new-instance v35, Landroid/content/res/MiuiResources;
+diff -r /home/danil_e71/Miui/test/framework.jar.out/smali/android/content/res/Resources.smali /home/danil_e71/Miui/MIUI8_patchrom_samsung_serranovexx/framework.jar.out/smali/android/content/res/Resources.smali
+5623,5624d5622
+<     sget-object v4, Landroid/content/res/Resources;->sPreloadedDrawables:[Landroid/util/LongSparseArray;
+< 
+5627,5631c5625
+<     iget-object v5, v0, Landroid/content/res/Resources;->mConfiguration:Landroid/content/res/Configuration;
+< 
+<     invoke-virtual {v5}, Landroid/content/res/Configuration;->getLayoutDirection()I
+< 
+<     move-result v5
+---
+>     move/from16 v1, p2
+5633,5635c5627
+<     aget-object v4, v4, v5
+< 
+<     invoke-virtual {v4, v10, v11}, Landroid/util/LongSparseArray;->get(J)Ljava/lang/Object;
+---
+>     invoke-virtual {v0, v10, v11, v1}, Landroid/content/res/Resources;->getPreloadedDrawable(JI)Landroid/graphics/drawable/Drawable$ConstantState;
+5638,5639d5629
+< 
+<     check-cast v14, Landroid/graphics/drawable/Drawable$ConstantState;
