@@ -1,0 +1,31 @@
+From 2a48151ee145ee1fc6725106e845a55c183b64f4 Mon Sep 17 00:00:00 2001
+From: danil_e71 <danile71@gmail.com>
+Date: Thu, 06 Feb 2017 14:39:20 +0300
+Subject: [PATCH] fix AppOpsService
+
+---
+ .../AppOpsService.smali      | 2 ++
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+--- a/services/smali/com/android/server/AppOpsService.smali
++++ b/services/smali/com/android/server/AppOpsService.smalii
+@@ -2348,7 +2348,7 @@
+     .prologue
+     if-ltz p1, :cond_1
+ 
+-    const/16 v0, 0x3f
++    const/16 v0, 0x45
+ 
+     if-ge p1, v0, :cond_1
+
+@@ -8549,7 +8549,7 @@
+     .local v1, "opRestrictions":[Z
+     if-nez v1, :cond_0
+ 
+-    const/16 v3, 0x3f
++    const/16 v3, 0x45
+ 
+     new-array v1, v3, [Z
+
+-- 
+1.9.1
